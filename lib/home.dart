@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/about.dart';
 
 class Home extends StatefulWidget {
  
@@ -13,27 +14,30 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
  var messageText = TextEditingController();
- String showMessage = "";
+ String title = "";
  @override
   Widget build(BuildContext context) {
     
     return Container(
       child: Column(
         children: <Widget>[
-          TextField(
-            controller: messageText,
-          ),
+          TextField(controller: messageText,),
+          
           RaisedButton(
             onPressed: (){
               setState(() {
-                showMessage = messageText.text;
+                title = messageText.text;
               });
+             Navigator.push(context, MaterialPageRoute(builder: (context){
+              return About(title);
+             }));
             },
-            child: Text("Show message"),
+            child: Text('Go to About Screen'),
           ),
-          Center(child: Text(showMessage,textDirection: TextDirection.ltr,)),
-         ]
+       
+        
+         ],
       ), 
      );
-  }
+   }
   } 
